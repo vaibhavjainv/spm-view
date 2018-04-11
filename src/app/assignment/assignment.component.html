@@ -1,0 +1,18 @@
+<ul class="resources">
+  <li *ngFor="let resource of resources">
+      <span class="badge">{{resource.name}}</span> 
+      <span class="badge">{{resource.location}}</span> 
+      <span class="badge">{{resource.rate}}</span>
+
+      <p *ngFor="let project of resource.projects"> 
+        <span class="badge">{{project.assignment}}</span> 
+        <span class="badge">{{project.account}}</span> 
+        <span *ngFor="let allocation of project.allocation"> 
+
+          {{allocation.week}} {{allocation.hours}} <br>
+        
+        </span>
+      </p>
+
+    </li>
+</ul>

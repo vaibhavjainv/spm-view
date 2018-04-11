@@ -1,0 +1,71 @@
+[
+    {
+        "projects": [
+            {
+                "allocation": [
+                    {
+                        "_id": "5ace3ab931370c218356c3f0",
+                        "week": "2018-05-09T04:00:00.000Z",
+                        "hours": 20
+                    },
+                    {
+                        "_id": "5ace3ab931370c218356c3ef",
+                        "week": "2018-05-16T04:00:00.000Z",
+                        "hours": 40
+                    }
+                ],
+                "_id": "5ace3ab931370c218356c3ee",
+                "account": "ABC",
+                "assignment": "XYZ"
+            }
+        ],
+        "_id": "5ace3ab931370c218356c3ed",
+        "name": "James Phillips",
+        "location": "onshore",
+        "rate": 150,
+        "__v": 0
+    },
+    {
+        "projects": [
+            {
+                "allocation": [
+                    {
+                        "_id": "5ace3ad431370c218356c3f4",
+                        "week": "2018-05-09T04:00:00.000Z",
+                        "hours": 20
+                    },
+                    {
+                        "_id": "5ace3ad431370c218356c3f3",
+                        "week": "2018-05-16T04:00:00.000Z",
+                        "hours": 40
+                    }
+                ],
+                "_id": "5ace3ad431370c218356c3f2",
+                "account": "ABC",
+                "assignment": "XYZ"
+            },
+            {
+                "allocation": [
+                    {
+                        "_id": "5ace3b3031370c218356c3f9",
+                        "week": "2018-05-09T04:00:00.000Z",
+                        "hours": 10
+                    },
+                    {
+                        "_id": "5ace3b3031370c218356c3f8",
+                        "week": "2018-05-16T04:00:00.000Z",
+                        "hours": 24
+                    }
+                ],
+                "_id": "5ace3b0831370c218356c3f5",
+                "account": "ABC",
+                "assignment": "123"
+            }
+        ],
+        "_id": "5ace3ad431370c218356c3f1",
+        "name": "Vaibhav Jain",
+        "location": "onshore",
+        "rate": 150,
+        "__v": 2
+    }
+]

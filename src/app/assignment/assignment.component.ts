@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '../resources.service';
 
 import { Resource } from '../resource' 
+import { Assignment } from '../assignment';
 
 
 @Component({
@@ -12,14 +13,14 @@ import { Resource } from '../resource'
 })
 export class AssignmentComponent implements OnInit {
 
-  resources: Resource[];
+  assignments: Assignment[];
   blue = "Green";
 
   constructor(private resourcesService: ResourcesService) { }
 
   getResources(): void {
-    this.resourcesService.getResources()
-        .subscribe(resp => this.resources = resp);
+    this.resourcesService.getAssignments()
+        .subscribe(resp => this.assignments = resp);
 }
 
 

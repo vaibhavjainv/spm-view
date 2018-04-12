@@ -1,3 +1,6 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -15,3 +18,15 @@ th, td:first-child{
 .assignment{
     margin: 2%;
 }
+form{
+    margin: 1%;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+  

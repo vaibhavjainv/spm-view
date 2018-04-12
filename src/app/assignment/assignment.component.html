@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let resource of assignment.resources">
-        <td>{{resource.name}}</td>
+        <td>{{resource.name}} <a (click)="deleteResource(resource.id)">remove</a> </td>
         <td>{{resource.location}}</td>
         <td>{{resource.rate | currency:'USD'}}</td>
         <td>{{resource.role}}</td>
@@ -35,4 +35,15 @@
 
     </tfoot>
   </table>
+
+  <form  (ngSubmit)="onSubmit()" #allocationForm="ngForm">
+    Name: <input type="text" id="name" required  [(ngModel)]="formData.name" name="name"  #spy/>
+    Location: <input type="text" id="location" required [(ngModel)]="formData.location" name="location"/>
+    Rate: <input type="number" id="rate" required [(ngModel)]="formData.projects[0].rate" name="rate" step="4"/>
+    Role: <input type="text" id="role" required [(ngModel)]="formData.projects[0].role" name="role"/>
+    Account: <input type="text" id="account" required [(ngModel)]="formData.projects[0].account" name="account" />
+    Assignment: <input type="text" id="assignment" required [(ngModel)]="formData.projects[0].assignment" name="assignment"/>
+    <input type="submit" id="submit"  [disabled]="!allocationForm.form.valid"/>
+  </form>
+  <button type="button" class="btn btn-default" (click)="allocationForm.reset()">Clear</button>
 </div>

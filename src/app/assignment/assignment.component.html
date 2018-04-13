@@ -20,7 +20,9 @@
         <td>{{resource.role}}</td>
         <td>{{resource.totalhours}}</td>
         <td>{{resource.totalcost | currency:'USD' }}</td>
-        <td *ngFor="let week of assignment.weeks">{{resource.allocation[week]}}</td>
+        <td *ngFor="let week of assignment.weeks">
+          <input type="number" value="{{resource.allocation[week]}}" step="4" (change)="updateAlloc(resource.id, hours.value, assignment.name, assignment.account, resource.rate, resource.role,week)" #hours >
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -39,7 +41,7 @@
   <form  (ngSubmit)="onSubmit()" #allocationForm="ngForm">
     Name: <input type="text" id="name" required  [(ngModel)]="formData.name" name="name"  #spy/>
     Location: <input type="text" id="location" required [(ngModel)]="formData.location" name="location"/>
-    Rate: <input type="number" id="rate" required [(ngModel)]="formData.projects[0].rate" name="rate" step="4"/>
+    Rate: <input type="number" id="rate" required [(ngModel)]="formData.projects[0].rate" name="rate" step="25"/>
     Role: <input type="text" id="role" required [(ngModel)]="formData.projects[0].role" name="role"/>
     Account: <input type="text" id="account" required [(ngModel)]="formData.projects[0].account" name="account" />
     Assignment: <input type="text" id="assignment" required [(ngModel)]="formData.projects[0].assignment" name="assignment"/>

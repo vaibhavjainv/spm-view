@@ -38,4 +38,53 @@ export class AssignmentComponent implements OnInit {
       .subscribe(resp => this.assignments = resp);
   }
 
+  updateAlloc(id, hours, assignmentname, account, rate, role, week) {
+    var updateObj = {};
+    updateObj["id"] = id;
+
+    var projects = [];
+    var project = {};
+
+    project["account"] = account;
+    project["assignment"] = assignmentname;
+    project["rate"] = rate;
+    project["role"] = role;
+
+    var allocations = [];
+    var allocation = {};
+
+    allocation["week"] = week;
+    allocation["hours"] = hours;
+
+    allocations.push(allocation);
+
+    this.assignments.forEach(assignment => {
+      if (assignment.name == assignmentname && assignment.account == account) {
+        assignment.resources.forEach(inneres => {
+          if (inneres["id"] == id) {
+            for (var existingAlloc in inneres.allocation) {
+              var allocation = {};
+              if (week != existingAlloc) {
+                allocation["week"] = existingAlloc;
+                allocation["hours"] = inneres.allocation[existingAlloc];
+                allocations.push(allocation);
+              }
+            }
+          }
+
+        });
+      }
+    });
+
+
+    project["allocation"] = allocations;
+
+    projects.push(project);
+
+    updateObj["projects"] = projects;
+
+    this.resourcesService.updateAlloc(updateObj)
+      .subscribe(resp => this.assignments = resp);
+  }
+
 }

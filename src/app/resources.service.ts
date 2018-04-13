@@ -22,6 +22,7 @@ export class ResourcesService {
   private getallassignmentsURL = 'http://localhost:3000/api/assignments/getall';
   private addResourceURL = 'http://localhost:3000/api/resources/add';
   private delResourceURL = 'http://localhost:3000/api/resources/delete';
+  private updateAllocURL = 'http://localhost:3000/api/resources/updateallocation';
   
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,10 @@ export class ResourcesService {
 
   addResource(formData): Observable<Assignment[]> {
     return this.http.post<Assignment[]>(this.addResourceURL,formData,httpOptions);
+  }
+
+  updateAlloc(formData): Observable<Assignment[]> {
+    return this.http.put<Assignment[]>(this.updateAllocURL,formData,httpOptions);
   }
 
   deleteResource(id): Observable<Assignment[]> {

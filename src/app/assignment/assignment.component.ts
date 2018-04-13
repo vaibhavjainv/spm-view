@@ -105,7 +105,7 @@ export class AssignmentComponent implements OnInit {
 
     allocations.push(allocation);
 
-    this.assignments.forEach(assignment => {
+    this.assignments["assignments"].forEach(assignment => {
       if (assignment.name == assignmentname && assignment.account == account) {
         assignment.resources.forEach(inneres => {
           if (inneres["id"] == id) {

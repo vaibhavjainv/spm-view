@@ -1,4 +1,4 @@
-<div *ngFor="let assignment of assignments" class="assignment">
+<div *ngFor="let assignment of assignments.assignments" class="assignment">
   <span class="badge" *ngIf="assignment.account != undefined">{{assignment.account}} - {{assignment.name}}</span>
   <table style="width: auto" *ngIf="assignment.account != undefined">
     <thead>
@@ -12,7 +12,7 @@
         <th>
           <button type="button" class="btn btn-default" (click)="addPrevWeek(assignment)">+</button>
         </th>
-        <th *ngFor="let week of assignment.weeks" class="hours-column">{{week | date:'MM/dd'}}</th>
+        <th *ngFor="let week of assignments.metadata.allweeks" class="hours-column">{{week | date:'MM/dd'}}</th>
         <th>
           <button type="button" class="btn btn-default" (click)="addNextWeek(assignment)">+</button>
         </th>
@@ -29,7 +29,7 @@
         <td>{{resource.totalhours}}</td>
         <td>{{resource.totalcost | currency:'USD' }}</td>
         <td></td>
-        <td style="width: fit-content" *ngFor="let week of assignment.weeks">
+        <td style="width: fit-content" *ngFor="let week of assignments.metadata.allweeks">
           <input style="width:40px" type="number" value="{{findVal(resource.allocation[week])}}" step="4" (change)="updateAlloc(resource.id, hours.value, assignment.name, assignment.account, resource.rate, resource.role,week)"
             #hours />
         </td>

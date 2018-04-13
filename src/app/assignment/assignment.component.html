@@ -1,6 +1,6 @@
 <div *ngFor="let assignment of assignments" class="assignment">
-  <span class="badge">{{assignment.name}} - {{assignment.account}}</span>
-  <table>
+  <span class="badge" *ngIf="assignment.account != undefined">{{assignment.account}} - {{assignment.name}}</span>
+  <table style="width: auto" *ngIf="assignment.account != undefined">
     <thead>
       <tr>
         <th>Name</th>
@@ -9,20 +9,31 @@
         <th>Role</th>
         <th>Hours</th>
         <th>Cost</th>
-        <th *ngFor="let week of assignment.weeks">{{week}}</th>
+        <th>
+          <button type="button" class="btn btn-default" (click)="addPrevWeek(assignment)">+</button>
+        </th>
+        <th *ngFor="let week of assignment.weeks" class="hours-column">{{week | date:'MM/dd'}}</th>
+        <th>
+          <button type="button" class="btn btn-default" (click)="addNextWeek(assignment)">+</button>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let resource of assignment.resources">
-        <td>{{resource.name}} <a (click)="deleteResource(resource.id)">remove</a> </td>
+        <td>{{resource.name}}
+          <a (click)="removeAllocation(resource.id, assignment)">remove</a>
+        </td>
         <td>{{resource.location}}</td>
         <td>{{resource.rate | currency:'USD'}}</td>
         <td>{{resource.role}}</td>
         <td>{{resource.totalhours}}</td>
         <td>{{resource.totalcost | currency:'USD' }}</td>
-        <td *ngFor="let week of assignment.weeks">
-          <input type="number" value="{{resource.allocation[week]}}" step="4" (change)="updateAlloc(resource.id, hours.value, assignment.name, assignment.account, resource.rate, resource.role,week)" #hours >
+        <td></td>
+        <td style="width: fit-content" *ngFor="let week of assignment.weeks">
+          <input style="width:40px" type="number" value="{{findVal(resource.allocation[week])}}" step="4" (change)="updateAlloc(resource.id, hours.value, assignment.name, assignment.account, resource.rate, resource.role,week)"
+            #hours />
         </td>
+        <td></td>
       </tr>
     </tbody>
     <tfoot>
@@ -38,14 +49,22 @@
     </tfoot>
   </table>
 
-  <form  (ngSubmit)="onSubmit()" #allocationForm="ngForm">
-    Name: <input type="text" id="name" required  [(ngModel)]="formData.name" name="name"  #spy/>
-    Location: <input type="text" id="location" required [(ngModel)]="formData.location" name="location"/>
-    Rate: <input type="number" id="rate" required [(ngModel)]="formData.projects[0].rate" name="rate" step="25"/>
-    Role: <input type="text" id="role" required [(ngModel)]="formData.projects[0].role" name="role"/>
-    Account: <input type="text" id="account" required [(ngModel)]="formData.projects[0].account" name="account" />
-    Assignment: <input type="text" id="assignment" required [(ngModel)]="formData.projects[0].assignment" name="assignment"/>
-    <input type="submit" id="submit"  [disabled]="!allocationForm.form.valid"/>
+  <div class="error" *ngIf="assignment.errors != undefined">{{assignment.errors}}</div>
+
+</div>
+
+
+
+<div class="assignment">
+  Add resource
+  <form (ngSubmit)="onSubmit()" #allocationForm="ngForm">
+    Name:
+    <input type="text" id="name" required [(ngModel)]="formData.name" name="name" #spy/> Location:
+    <input type="text" id="location" required [(ngModel)]="formData.location" name="location" /> Rate:
+    <input type="number" id="rate" required [(ngModel)]="formData.projects[0].rate" name="rate" step="25" /> Role:
+    <input type="text" id="role" required [(ngModel)]="formData.projects[0].role" name="role" /> Account:
+    <input type="text" id="account" required [(ngModel)]="formData.projects[0].account" name="account" /> Assignment:
+    <input type="text" id="assignment" required [(ngModel)]="formData.projects[0].assignment" name="assignment" />
+    <input type="submit" id="submit" [disabled]="!allocationForm.form.valid" />
   </form>
-  <button type="button" class="btn btn-default" (click)="allocationForm.reset()">Clear</button>
 </div>

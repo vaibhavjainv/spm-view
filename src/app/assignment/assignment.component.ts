@@ -4,6 +4,7 @@ import { ResourcesService } from '../resources.service';
 
 import { Resource } from '../resource'
 import { Assignment } from '../assignment';
+import { resource } from 'selenium-webdriver/http';
 
 
 @Component({
@@ -15,9 +16,42 @@ export class AssignmentComponent implements OnInit {
 
   assignments: Assignment[];
   blue = "Green";
-  formData = { "projects": [{ "rate": "", "role": "", "account": "ABC", "assignment": "XYZ" }] };
+  formData = { "projects": [{ "rate": "", "role": "", "account": "", "assignment": "" }] };
+  index = 0;
 
   constructor(private resourcesService: ResourcesService) { }
+
+  findVal(value) {
+    if (value > 0) {
+      return value;
+    } else {
+      return 0;
+    }
+  }
+
+  addPrevWeek(in_assignment) {
+    var prevWeek = new Date(in_assignment.startWeek);
+    prevWeek.setDate(prevWeek.getDate() - 7);
+    this.updateAlloc(in_assignment.resources[0].id,
+      0,
+      in_assignment.name,
+      in_assignment.account,
+      in_assignment.resources[0].rate,
+      in_assignment.resources[0].role,
+      prevWeek.toDateString());
+  }
+
+  addNextWeek(in_assignment) {
+    var nextWeek = new Date(in_assignment.endWeek);
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    this.updateAlloc(in_assignment.resources[0].id,
+      0,
+      in_assignment.name,
+      in_assignment.account,
+      in_assignment.resources[0].rate,
+      in_assignment.resources[0].role,
+      nextWeek.toDateString());
+  }
 
   getResources(): void {
     this.resourcesService.getAssignments()
@@ -31,10 +65,23 @@ export class AssignmentComponent implements OnInit {
   onSubmit() {
     this.resourcesService.addResource(this.formData)
       .subscribe(resp => this.assignments = resp);
+
+    this.formData = { "projects": [{ "rate": "", "role": "", "account": "", "assignment": "" }] };
+
   }
 
   deleteResource(id) {
     this.resourcesService.deleteResource(id)
+      .subscribe(resp => this.assignments = resp);
+  }
+
+  removeAllocation(id, assignment) {
+    var data = {};
+    data["id"] = id;
+    data["assignment"] = assignment.name;
+    data["account"] = assignment.account;
+
+    this.resourcesService.removeAllocation(data)
       .subscribe(resp => this.assignments = resp);
   }
 

@@ -23,6 +23,7 @@ export class ResourcesService {
   private addResourceURL = 'http://localhost:3000/api/resources/add';
   private delResourceURL = 'http://localhost:3000/api/resources/delete';
   private updateAllocURL = 'http://localhost:3000/api/resources/updateallocation';
+  private removeAllocationURL = 'http://localhost:3000/api/resources/removeallocation';
   
   constructor(private http: HttpClient) { }
 
@@ -45,6 +46,10 @@ export class ResourcesService {
   deleteResource(id): Observable<Assignment[]> {
     const url = `${this.delResourceURL}/${id}`;
     return this.http.delete<Assignment[]>(url,httpOptions);
+  }
+
+  removeAllocation(data): Observable<Assignment[]> {
+    return this.http.put<Assignment[]>(this.removeAllocationURL,data,httpOptions);
   }
 
 }

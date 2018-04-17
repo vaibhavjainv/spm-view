@@ -9,6 +9,9 @@ import { Assignment } from './assignment'
 
 import { print } from 'util';
 
+import { environment } from '../environments/environment';
+
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -18,12 +21,12 @@ const httpOptions = {
 @Injectable()
 export class ResourcesService {
 
-  private getall = 'http://localhost:3000/api/resources/getall';
-  private getallassignmentsURL = 'http://localhost:3000/api/assignments/getall';
-  private addResourceURL = 'http://localhost:3000/api/resources/add';
-  private delResourceURL = 'http://localhost:3000/api/resources/delete';
-  private updateAllocURL = 'http://localhost:3000/api/resources/updateallocation';
-  private removeAllocationURL = 'http://localhost:3000/api/resources/removeallocation';
+  private getall = 'http://'+environment.spmapihost+'/api/resources/getall';
+  private getallassignmentsURL = 'http://'+environment.spmapihost+'/api/assignments/getall';
+  private addResourceURL = 'http://'+environment.spmapihost+'/api/resources/add';
+  private delResourceURL = 'http://'+environment.spmapihost+'/api/resources/delete';
+  private updateAllocURL = 'http://'+environment.spmapihost+'/api/resources/updateallocation';
+  private removeAllocationURL = 'http://'+environment.spmapihost+'/api/resources/removeallocation';
   
   constructor(private http: HttpClient) { }
 
@@ -32,6 +35,7 @@ export class ResourcesService {
   }
 
   getAssignments(): Observable<Assignment[]> {
+    console.log("config  = "+ environment.spmapihost);
     return this.http.get<Assignment[]>(this.getallassignmentsURL);
   }
 

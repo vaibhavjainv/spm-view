@@ -13,7 +13,7 @@ td, th {
     padding: 8px;
 }
 th, td:first-child{
-    background:lightgrey;
+    background: lavender;
 }
 .assignment{
     margin: 2%;

@@ -4,7 +4,6 @@ import { ResourcesService } from '../resources.service';
 
 import { Resource } from '../resource'
 import { Assignment } from '../assignment';
-import { resource } from 'selenium-webdriver/http';
 
 
 @Component({

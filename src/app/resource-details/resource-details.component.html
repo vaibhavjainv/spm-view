@@ -1,3 +1,26 @@
-<p style="margin: 2%"> 
-  Resource id = {{resourceid}}
-</p>
+<h1 style="margin: 2%">
+  {{resourceInfo.name}}
+</h1>
+
+<table style="width: auto">
+  <thead>
+    <tr>
+      <th>Account</th>
+      <th>Project</th>
+      <th>Rate</th>
+      <th>Role</th>
+      <th>Hours</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of resourceInfo.projects">
+      <td>{{project.account}}</td>
+      <td>{{project.assignment}}</td>
+      <td>{{project.rate}}</td>
+      <td>{{project.role}}</td>
+      <td>{{project.hours}}</td>
+      <td>{{project.cost}}</td>
+    </tr>
+  </tbody>
+</table>

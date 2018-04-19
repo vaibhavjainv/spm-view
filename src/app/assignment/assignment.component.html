@@ -23,7 +23,7 @@
     <tbody>
       <tr *ngFor="let resource of assignment.resources">
         <td><a routerLink="/resource-details/{{resource.id}}">{{resource.name}}</a>
-          <a (click)="removeAllocation(resource.id, assignment)">remove</a>
+          <a (click)="removeAllocation(resource.id, assignment)">(remove)</a>
         </td>
         <td>{{resource.location}}</td>
         <td>{{resource.rate | currency:'USD'}}</td>

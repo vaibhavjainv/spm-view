@@ -35,7 +35,6 @@ export class ResourcesService {
   }
 
   getAssignments(): Observable<Assignment[]> {
-    console.log("config  = "+ environment.spmapihost);
     return this.http.get<Assignment[]>(this.getallassignmentsURL);
   }
 

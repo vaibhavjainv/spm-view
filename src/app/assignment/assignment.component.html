@@ -1,4 +1,4 @@
-<div *ngFor="let assignment of assignments.assignments" class="assignment">
+<div *ngFor="let assignment of assignments?.assignments" class="assignment">
   <span class="badge" *ngIf="assignment.account != undefined">{{assignment.account}} - {{assignment.name}}</span>
   <table style="width: auto" *ngIf="assignment.account != undefined">
     <thead>
@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let resource of assignment.resources">
-        <td>{{resource.name}}
+        <td><a routerLink="/resource-details/{{resource.id}}">{{resource.name}}</a>
           <a (click)="removeAllocation(resource.id, assignment)">remove</a>
         </td>
         <td>{{resource.location}}</td>

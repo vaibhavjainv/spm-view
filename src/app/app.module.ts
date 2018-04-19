@@ -10,13 +10,15 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ResourcesService } from './resources.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ResourceDetailsComponent } from './resource-details/resource-details.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AssignmentComponent
+    AssignmentComponent,
+    ResourceDetailsComponent
   ],
   imports: [
     BrowserModule,

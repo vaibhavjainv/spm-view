@@ -27,37 +27,12 @@ export class ResourceDetailsComponent implements OnInit {
       .subscribe(resp => this.resourceInfo = resp);
   }
 
-  findmatch(project, week) {
-    var mapping = project.allocation.filter(allocation => allocation.week == week);
-    if (mapping != undefined && mapping.length > 0) {
-      return mapping[0].hours;
+  isExtaHr(hrs) {
+    if (hrs > 40) {
+      return 'extra-hours';
     } else {
-      return 0;
+      return;
     }
-  }
-
-  findtotalhoursforweek(week, totalhoursmap) {
-    for (var i in totalhoursmap) {
-      var dt = new Date(week);
-      var idt = new Date(i);
-      console.log("dt value = " + dt.toDateString() + " , idt value =  " + idt.toDateString());
-      if (dt.toDateString() == idt.toDateString()) {
-        console.log("match found, value = " + totalhoursmap[i]);
-        return totalhoursmap[i];
-      }
-    };
-  }
-
-  findtotalhrcellclass(week, totalhoursmap) {
-    for (var i in totalhoursmap) {
-      var dt = new Date(week);
-      var idt = new Date(i);
-      if (dt.toDateString() == idt.toDateString()) {
-        if (totalhoursmap[i] > 40) {
-          return 'extra-hours';
-        }
-      }
-    };
   }
 
 }

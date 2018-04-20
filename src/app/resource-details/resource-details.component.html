@@ -20,12 +20,12 @@
     <tr *ngFor="let project of resourceInfo.projects">
       <td>{{project.account}}</td>
       <td>{{project.assignment}}</td>
-      <td>{{project.rate}}</td>
+      <td>{{project.rate | currency:'USD' }}</td>
       <td>{{project.role}}</td>
       <td>{{project.hours}}</td>
-      <td>{{project.cost}}</td>
+      <td>{{project.cost | currency:'USD' }}</td>
       <td *ngFor="let week of resourceInfo.weeks" class="hours-column">
-        {{findmatch(project, week)}}
+        {{project.projHrMap[week]}}
       </td>
     </tr>
   </tbody>
@@ -37,8 +37,8 @@
       <td></td>
       <td></td>
       <td></td>
-      <td *ngFor="let week of resourceInfo.weeks" class="hours-column {{findtotalhrcellclass(week,resourceInfo.totalhoursmap)}}">
-        {{findtotalhoursforweek(week,resourceInfo.totalhoursmap)}}
+      <td *ngFor="let week of resourceInfo.weeks" class="hours-column {{ isExtaHr(resourceInfo.totalhoursmap[week]) }}">
+        {{resourceInfo.totalhoursmap[week]}}
       </td>
     </tr>
 

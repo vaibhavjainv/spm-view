@@ -14,7 +14,8 @@ export class Assignment {
                 }
             ]
         }
-    ]
+    ];
+    metadata:{};
     startWeek: Date;
     endWeek: Date;
 }

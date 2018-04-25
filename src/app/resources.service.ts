@@ -26,6 +26,7 @@ export class ResourcesService {
   private addResourceURL = 'http://'+environment.spmapihost+'/api/resources/add';
   private delResourceURL = 'http://'+environment.spmapihost+'/api/resources/delete';
   private updateAllocURL = 'http://'+environment.spmapihost+'/api/resources/updateallocation';
+  private updateSeqURL = 'http://'+environment.spmapihost+'/api/resources/updatesequence';
   private removeAllocationURL = 'http://'+environment.spmapihost+'/api/resources/removeallocation';
   private getResourceInfoURL = 'http://'+environment.spmapihost+'/api/resources/getdetails';
 
@@ -62,6 +63,10 @@ export class ResourcesService {
     return this.http.get(url);
   }
   
+  updatesequence(data): Observable<{}> {
+    return this.http.put<Assignment[]>(this.updateSeqURL,data,httpOptions);
+
+  }
 
 }
 

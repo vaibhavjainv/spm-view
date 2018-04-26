@@ -136,7 +136,6 @@ export class AssignmentComponent implements OnInit {
           }
         }
       })
-      console.log("index = " + index);
       this.moveSequence(resources[index + 1], assignment, 'up', resources);
     }
 

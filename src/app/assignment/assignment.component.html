@@ -1,4 +1,4 @@
-<div *ngFor="let assignment of assignments?.assignments" class="assignment">
+<div *ngFor="let assignment of assignments?.assignments" class="assignment" id="{{assignment.account}} - {{assignment.name}}">
   <span class="badge" *ngIf="assignment.account != undefined">{{assignment.account}} - {{assignment.name}}</span>
   <table style="width: auto" *ngIf="assignment.account != undefined">
     <thead>
@@ -14,7 +14,6 @@
         </th>
         <th *ngFor="let week of assignments.metadata.allweeks" class="hours-column">
           {{week | date:'MM/dd'}}
-          <!--<a (click)="removeWeek(resource.id, assignment)" class="btn btn-default">-</a>-->
         </th>
         <th>
           <button type="button" class="btn btn-default btn-success" (click)="addNextWeek(assignment)">+</button>

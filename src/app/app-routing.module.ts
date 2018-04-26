@@ -6,7 +6,8 @@ import { ResourceDetailsComponent } from './resource-details/resource-details.co
 
 const routes: Routes = [
   { path: 'assignment', component: AssignmentComponent },
-  { path: 'resource-details/:id', component: ResourceDetailsComponent }
+  { path: 'resource-details/:id', component: ResourceDetailsComponent },
+  { path: 'resource-details', component: ResourceDetailsComponent }
 ];
 
 @NgModule({

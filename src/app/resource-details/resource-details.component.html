@@ -1,6 +1,8 @@
-<h1 style="margin: 2%">
-  {{resourceInfo.name}}
-</h1>
+
+<div *ngFor="let resourceInfo of resourceInfoarr" class="hours-column">
+<h3 style="margin: 2%">
+  {{resourceInfo.name}} (<a (click)="deleteResource(resourceInfo._id)">remove</a>)
+</h3>
 
 <table style="width: auto">
   <thead>
@@ -19,7 +21,7 @@
   <tbody>
     <tr *ngFor="let project of resourceInfo.projects">
       <td>{{project.account}}</td>
-      <td>{{project.assignment}}</td>
+      <td><a href="assignment#{{project.account}} - {{project.assignment}}">{{project.assignment}}</a></td>
       <td>{{project.rate | currency:'USD' }}</td>
       <td>{{project.role}}</td>
       <td>{{project.hours}}</td>
@@ -44,3 +46,4 @@
 
   </tfoot>
 </table>
+</div>

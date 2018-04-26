@@ -10,7 +10,7 @@ import { ResourcesService } from '../resources.service';
 })
 export class ResourceDetailsComponent implements OnInit {
   resourceid = "";
-  resourceInfo = {};
+  resourceInfoarr;
 
   constructor(private route: ActivatedRoute,
     private resourcesService: ResourcesService,
@@ -23,8 +23,17 @@ export class ResourceDetailsComponent implements OnInit {
   }
 
   getResourceDetails(): void {
-    this.resourcesService.getResourceDetails(this.resourceid)
-      .subscribe(resp => this.resourceInfo = resp);
+    if (this.resourceid != undefined) {
+      this.resourcesService.getResourceDetails(this.resourceid)
+        .subscribe(resp => this.resourceInfoarr = resp);
+    } else {
+      this.resourcesService.getAllResourceDetails().subscribe(resp => this.resourceInfoarr = resp);
+    }
+  }
+
+  deleteResource(id) {
+    this.resourcesService.deleteResource(id)
+      .subscribe(resp => this.resourceInfoarr = resp);
   }
 
   isExtaHr(hrs) {

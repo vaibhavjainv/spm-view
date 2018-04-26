@@ -23,11 +23,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let resource of assignment.resources">
-        <td>
+        <td nowrap>
           <a routerLink="/resource-details/{{resource.id}}">{{resource.name}}</a>
           <a (click)="removeAllocation(resource.id, assignment)">(remove)</a>
-          <a (click)="moveSequence(resource, assignment, 'up', assignment.resources)">(up)</a>
-          <a *ngIf="resource.preseq > 0" (click)="moveSequence(resource, assignment, 'down', assignment.resources)">(down)</a> {{resource.preseq}}
+          <!--<a (click)="moveSequence(resource, assignment, 'up', assignment.resources)">(up)</a>-->
+          <img class="img-responsive" src="assets/up.png" (click)="moveSequence(resource, assignment, 'up', assignment.resources)">
+          <!--<a *ngIf="resource.preseq > 0" (click)="moveSequence(resource, assignment, 'down', assignment.resources)">(down)</a> {{resource.preseq}}-->
+          <img class="img-responsive" src="assets/down.png" (click)="moveSequence(resource, assignment, 'down', assignment.resources)">
         </td>
         <td>{{resource.location}}</td>
         <td>{{resource.rate | currency:'USD'}}</td>

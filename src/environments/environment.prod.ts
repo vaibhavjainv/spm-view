@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  spmapihost: "spm-api-749052067.us-west-2.elb.amazonaws.com"
+  spmapihost: "spm-api-568599112.us-west-2.elb.amazonaws.com"
 };

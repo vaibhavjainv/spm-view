@@ -30,6 +30,7 @@ export class ResourcesService {
   private removeAllocationURL = 'http://'+environment.spmapihost+'/api/resources/removeallocation';
   private getResourceInfoURL = 'http://'+environment.spmapihost+'/api/resources/getdetails';
   private getAllResourceInfoURL = 'http://'+environment.spmapihost+'/api/resources/getallwithdetails';
+  private updateNameURL = 'http://'+environment.spmapihost+'/api/resources/updatename';
 
   
   constructor(private http: HttpClient) { }
@@ -71,6 +72,10 @@ export class ResourcesService {
 
   getAllResourceDetails(): Observable<{}> {
     return this.http.get(this.getAllResourceInfoURL);
+  }
+
+  updateName(resourceInfo): Observable<Assignment[]> {
+    return this.http.put<Assignment[]>(this.updateNameURL,resourceInfo,httpOptions);
   }
 
 }

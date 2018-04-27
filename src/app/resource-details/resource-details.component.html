@@ -1,7 +1,9 @@
 
 <div *ngFor="let resourceInfo of resourceInfoarr" class="hours-column">
 <h3 style="margin: 2%">
-  {{resourceInfo.name}} (<a (click)="deleteResource(resourceInfo._id)">remove</a>)
+  <label *ngIf="!editMode" (click)="editMode=true;">{{resourceInfo.name}}</label>
+  <input *ngIf="editMode" [(ngModel)]="resourceInfo.name" (blur)="editMode=false;updateName(resourceInfo)">
+  (<a (click)="deleteResource(resourceInfo._id)">remove</a>)
 </h3>
 
 <table style="width: auto">

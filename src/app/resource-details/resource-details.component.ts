@@ -11,6 +11,8 @@ import { ResourcesService } from '../resources.service';
 export class ResourceDetailsComponent implements OnInit {
   resourceid = "";
   resourceInfoarr;
+  
+  
 
   constructor(private route: ActivatedRoute,
     private resourcesService: ResourcesService,
@@ -34,6 +36,13 @@ export class ResourceDetailsComponent implements OnInit {
   deleteResource(id) {
     this.resourcesService.deleteResource(id)
       .subscribe(resp => this.resourceInfoarr = resp);
+  }
+
+  updateName(resourceInfo){
+    
+    this.resourcesService.updateName(resourceInfo)
+      .subscribe(resp => this.resourceInfoarr = resp);
+
   }
 
   isExtaHr(hrs) {

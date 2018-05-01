@@ -26,6 +26,7 @@ export class ResourcesService {
   private addResourceURL = 'http://'+environment.spmapihost+'/api/resources/add';
   private delResourceURL = 'http://'+environment.spmapihost+'/api/resources/delete';
   private updateAllocURL = 'http://'+environment.spmapihost+'/api/resources/updateallocation';
+  private updateRateURL = 'http://'+environment.spmapihost+'/api/resources/updaterate';
   private updateSeqURL = 'http://'+environment.spmapihost+'/api/resources/updatesequence';
   private removeAllocationURL = 'http://'+environment.spmapihost+'/api/resources/removeallocation';
   private getResourceInfoURL = 'http://'+environment.spmapihost+'/api/resources/getdetails';
@@ -51,6 +52,10 @@ export class ResourcesService {
     return this.http.put<Assignment[]>(this.updateAllocURL,formData,httpOptions);
   }
 
+  updateRate(formData): Observable<Assignment[]> {
+    return this.http.put<Assignment[]>(this.updateRateURL,formData,httpOptions);
+  }
+  
   deleteResource(id): Observable<Assignment[]> {
     const url = `${this.delResourceURL}/${id}`;
     return this.http.delete<Assignment[]>(url,httpOptions);

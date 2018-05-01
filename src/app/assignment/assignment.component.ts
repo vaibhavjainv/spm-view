@@ -194,4 +194,12 @@ export class AssignmentComponent implements OnInit {
       .subscribe(resp => this.assignments = resp);
   }
 
+  updateRate(resource,assignment){
+    var data = {};
+    data["resource"] = resource;
+    data["assignment"] = assignment;
+    this.resourcesService.updateRate(data)
+    .subscribe(resp => this.assignments = resp);
+  }
+
 }

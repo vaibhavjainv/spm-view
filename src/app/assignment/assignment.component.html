@@ -29,7 +29,7 @@
           <img class="img-responsive" src="assets/down.png" (click)="moveSequence(resource, assignment, 'down', assignment.resources)">
         </td>
         <td>{{resource.location}}</td>
-        <td>$<input style="width: 50px" [(ngModel)]="resource.rate" (change)="updateRate(resource,assignment)"/></td>
+        <td><input style="width: 50px" [(ngModel)]="resource.rate" (change)="updateRate(resource,assignment)"/></td>
         <td>{{resource.role}}</td>
         <td>{{resource.totalhours}}</td>
         <td>{{resource.totalcost | currency:'USD' }}</td>
